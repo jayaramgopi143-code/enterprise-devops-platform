@@ -21,7 +21,7 @@ resource "aws_instance" "devops_server" {
   subnet_id              = module.vpc.public_subnet_id
   vpc_security_group_ids = [module.security_groups.security_group_id]
   key_name               = "enterprise-devops-key"
-
+  user_data              = file("../../../scripts/install_docker.sh")
   tags = {
     Name        = "enterprise-devops-server"
     Environment = "dev"
