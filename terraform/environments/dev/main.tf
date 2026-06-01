@@ -15,6 +15,12 @@ module "security_groups" {
   ssh_allowed_ip = var.ssh_allowed_ip
 }
 
+module "iam" {
+  source = "../../modules/iam"
+
+  environment = var.environment
+}
+
 resource "aws_instance" "devops_server" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
@@ -22,6 +28,8 @@ resource "aws_instance" "devops_server" {
   vpc_security_group_ids = [module.security_groups.security_group_id]
   key_name               = "enterprise-devops-key"
   user_data              = file("../../../scripts/install_docker.sh")
+  iam_instance_profile   = module.iam.instance_profile_name
+
   tags = {
     Name        = "enterprise-devops-server"
     Environment = "dev"
