@@ -3,7 +3,7 @@ resource "aws_instance" "devops_server" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "enterprise-devops-server"
+    Name        = "enterprise-devops-server"
     Environment = "dev"
   }
 }
