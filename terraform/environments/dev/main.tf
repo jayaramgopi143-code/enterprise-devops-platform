@@ -10,19 +10,20 @@ module "vpc" {
   vpc_cidr            = var.vpc_cidr
   public_subnet_cidr  = var.public_subnet_cidr
   private_subnet_cidr = var.private_subnet_cidr
-  
+
 }
 
 module "security_groups" {
   source = "../../modules/security-groups"
 
   vpc_id         = module.vpc.vpc_id
+  environment    = local.environment
   ssh_allowed_ip = var.ssh_allowed_ip
 }
 
 module "iam" {
   source = "../../modules/iam"
-  
+
 }
 
 resource "aws_instance" "devops_server" {
@@ -35,10 +36,10 @@ resource "aws_instance" "devops_server" {
   iam_instance_profile   = module.iam.instance_profile_name
 
   tags = {
-  Name        = "${terraform.workspace}-enterprise-devops-server"
-  Environment = terraform.workspace
-  Project     = "enterprise-devops"
-  ManagedBy   = "terraform"
+    Name        = "${terraform.workspace}-enterprise-devops-server"
+    Environment = terraform.workspace
+    Project     = "enterprise-devops"
+    ManagedBy   = "terraform"
   }
 
 }
