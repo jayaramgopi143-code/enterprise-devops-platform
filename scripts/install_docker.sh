@@ -26,7 +26,7 @@ docker pull 433939225422.dkr.ecr.ap-south-1.amazonaws.com/enterprise-devops-app:
 
 # Run Docker container
 docker run -d \
---restart always \
+--restart unless-stopped \
 -p 80:80 \
 --name enterprise-devops-app \
 433939225422.dkr.ecr.ap-south-1.amazonaws.com/enterprise-devops-app:latest
