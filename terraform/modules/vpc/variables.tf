@@ -10,6 +10,3 @@ variable "private_subnet_cidr" {
   description = "CIDR block for private subnet"
 }
 
-variable "environment" {
-  description = "Environment name"
-}

@@ -4,8 +4,8 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name        = "${var.environment}-vpc"
-    Environment = var.environment
+    Name        = "${terraform.workspace}-vpc"
+    Environment = terraform.workspace
   }
 }
 
@@ -13,29 +13,31 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name        = "${var.environment}-igw"
-    Environment = var.environment
+    Name        = "${terraform.workspace}-igw"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_subnet" "public_subnet" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet_cidr
+  availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = true
 
   tags = {
-    Name        = "${var.environment}-public-subnet"
-    Environment = var.environment
+    Name        = "${terraform.workspace}-public-subnet"
+    Environment = terraform.workspace
   }
 }
 
 resource "aws_subnet" "private_subnet" {
   vpc_id     = aws_vpc.main.id
   cidr_block = var.private_subnet_cidr
+  availability_zone = "ap-south-1a"
 
   tags = {
-    Name        = "${var.environment}-private-subnet"
-    Environment = var.environment
+    Name        = "${terraform.workspace}-private-subnet"
+    Environment = terraform.workspace
   }
 }
 
@@ -48,8 +50,8 @@ resource "aws_route_table" "public_rt" {
   }
 
   tags = {
-    Name        = "${var.environment}-public-rt"
-    Environment = var.environment
+    Name        = "${terraform.workspace}-public-rt"
+    Environment = terraform.workspace
   }
 }
 

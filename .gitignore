@@ -2,6 +2,7 @@
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+.terraform/
 crash.log
 terraform.tfvars
 *.backup
@@ -25,3 +26,4 @@ override.tf.json
 
 # Logs
 *.log
+crash.log

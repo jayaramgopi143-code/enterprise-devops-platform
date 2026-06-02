@@ -25,7 +25,10 @@ aws ecr get-login-password --region ap-south-1 | docker login \
 docker pull 433939225422.dkr.ecr.ap-south-1.amazonaws.com/enterprise-devops-app:latest
 
 # Run Docker container
-docker run -d -p 80:80 --name enterprise-devops-app \
+docker run -d \
+--restart always \
+-p 80:80 \
+--name enterprise-devops-app \
 433939225422.dkr.ecr.ap-south-1.amazonaws.com/enterprise-devops-app:latest
 
 # Create bootstrap log

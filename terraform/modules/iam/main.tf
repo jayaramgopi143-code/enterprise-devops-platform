@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ec2_role" {
-  name = "${var.environment}-ec2-role"
+  name = "${terraform.workspace}-ec2-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -19,7 +19,7 @@ resource "aws_iam_role" "ec2_role" {
 }
 
 resource "aws_iam_role_policy" "ec2_policy" {
-  name = "dev-ec2-policy"
+  name = "${terraform.workspace}-ec2-policy"
   role = aws_iam_role.ec2_role.id
 
   policy = jsonencode({
@@ -50,6 +50,6 @@ resource "aws_iam_role_policy" "ec2_policy" {
 }
 
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "${var.environment}-ec2-profile"
+  name = "${terraform.workspace}-ec2-profile"
   role = aws_iam_role.ec2_role.name
 }
