@@ -27,13 +27,14 @@ module "iam" {
 }
 
 resource "aws_instance" "devops_server" {
-  ami                    = var.ami_id
-  instance_type          = local.instance_type
-  subnet_id              = module.vpc.public_subnet_id
-  vpc_security_group_ids = [module.security_groups.security_group_id]
-  key_name               = "enterprise-devops-key"
-  user_data              = file("../../../scripts/install_docker.sh")
-  iam_instance_profile   = module.iam.instance_profile_name
+  ami                         = var.ami_id
+  instance_type               = local.instance_type
+  subnet_id                   = module.vpc.public_subnet_id
+  vpc_security_group_ids      = [module.security_groups.security_group_id]
+  key_name                    = "enterprise-devops-key"
+  user_data                   = file("../../../scripts/install_docker.sh")
+  iam_instance_profile        = module.iam.instance_profile_name
+  associate_public_ip_address = true
 
   tags = {
     Name        = "${terraform.workspace}-enterprise-devops-server"

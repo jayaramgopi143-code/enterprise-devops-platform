@@ -7,4 +7,4 @@ public_subnet_cidr = "10.0.1.0/24"
 private_subnet_cidr = "10.0.2.0/24"
 
 # Strict Firewall Whitelisting - Allows only your home network to SSH
-ssh_allowed_ip = "49.204.238.214/32"
+ssh_allowed_ip = "49.204.239.52/32"
