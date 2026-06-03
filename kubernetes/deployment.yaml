@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: enterprise-devops-deployment
+  namespace: enterprise-devops
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: enterprise-devops-app
+
+  template:
+    metadata:
+      labels:
+        app: enterprise-devops-app
+
+    spec:
+      containers:
+      - name: enterprise-devops-container
+
+        image: 433939225422.dkr.ecr.ap-south-1.amazonaws.com/enterprise-devops-app:latest
+
+        ports:
+        - containerPort: 80
+
+        imagePullPolicy: Always

@@ -1,0 +1,14 @@
+replicaCount: 2
+
+image:
+  repository: 433939225422.dkr.ecr.ap-south-1.amazonaws.com/enterprise-devops-app
+  pullPolicy: Always
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+
+containerPort: 80
+
+namespace: enterprise-devops

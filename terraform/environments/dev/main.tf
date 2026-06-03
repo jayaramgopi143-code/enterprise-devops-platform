@@ -1,7 +1,7 @@
 locals {
   environment = terraform.workspace
 
-  instance_type = terraform.workspace == "prod" ? "t3.small" : "t3.micro"
+  instance_type = terraform.workspace == "prod" ? "t3.small" : "t3.small"
 }
 
 module "vpc" {
